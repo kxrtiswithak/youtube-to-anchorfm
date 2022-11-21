@@ -101,17 +101,18 @@ async function postEpisode(youtubeVideoInfo) {
     await navigationPromise;
     console.log('Logged in');
 
-    console.log('Uploading audio file');
+    console.log('Uploading video file');
     await page.waitForSelector('input[type=file]');
     const inputFile = await page.$('input[type=file]');
-    await inputFile.uploadFile(env.AUDIO_FILE);
+    await inputFile.uploadFile(env.VIDEO_FILE);
+    
 
-    console.log('Waiting for upload to finish');
-    await page.waitForTimeout(25 * 1000);
+    // console.log('Waiting for upload to finish');
+    // await page.waitForTimeout(25 * 1000);
 
-    const saveEpisodeButtonSelector = '//span[contains(text(),"Save")]/parent::button[not(boolean(@disabled))]';
-    await page.waitForXPath(saveEpisodeButtonSelector, { timeout: env.UPLOAD_TIMEOUT });
-    const [saveButton] = await page.$x(saveEpisodeButtonSelector);
+    const chooseVideoEpisodeButtonSelector = '//span[contains(text(),"Video")]/parent::button[not(boolean(@disabled))]';
+    await page.waitForXPath(chooseVideoEpisodeButtonSelector, { timeout: env.UPLOAD_TIMEOUT });
+    const [saveButton] = await page.$x(chooseVideoEpisodeButtonSelector);
     await saveButton.click();
     await navigationPromise;
 
@@ -172,7 +173,7 @@ async function postEpisode(youtubeVideoInfo) {
 function getSaveDraftOrPublishOrScheduleButtonDescription() {
   if (env.SAVE_AS_DRAFT) {
     return {
-      xpath: '//button[text()="Save as draft"]',
+      xpath: '//button[text()="Update saved draft"]',
       message: 'Saving draft',
     };
   }

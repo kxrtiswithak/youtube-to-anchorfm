@@ -1,6 +1,6 @@
 const youtubedl = require('youtube-dl-exec');
 const env = require('../environment-variables');
-const { AUDIO_FILE_FORMAT, THUMBNAIL_FILE_FORMAT } = require('../environment-variables');
+const { VIDEO_FILE_FORMAT, THUMBNAIL_FILE_FORMAT } = require('../environment-variables');
 
 const youtubeDlOptions = {
   noCheckCertificates: true,
@@ -22,14 +22,13 @@ function getDownloaThumbnailOptions() {
   };
 }
 
-function getDownloadAudioOptions() {
+function getDownloadVideoOptions() {
   const options = {
     ...youtubeDlOptions,
-    f: 'bestaudio',
-    x: true,
+    f: 'bestvideo+bestaudio',
+    recodeVideo: VIDEO_FILE_FORMAT,
     forceOverwrites: true,
-    audioFormat: AUDIO_FILE_FORMAT,
-    o: env.AUDIO_FILE_TEMPLATE,
+    o: env.VIDEO_FILE_TEMPLATE,
   };
   if (env.POSTPROCESSOR_ARGS.length > 0) {
     options.postprocessorArgs = env.POSTPROCESSOR_ARGS;
@@ -88,18 +87,18 @@ async function downloadThumbnail(videoId) {
   }
 }
 
-async function downloadAudio(videoId) {
-  console.log(`Downloading audio for video id ${videoId}`);
+async function downloadVideo(videoId) {
+  console.log(`Downloading video for video id ${videoId}`);
   try {
-    await youtubedl(getVideoUrl(videoId), getDownloadAudioOptions());
-    console.log(`Downloaded audio for video id ${videoId}`);
+    await youtubedl(getVideoUrl(videoId), getDownloadVideoOptions());
+    console.log(`Downloaded video for video id ${videoId}`);
   } catch (err) {
-    throw new Error(`Unable to download audio: ${err}`);
+    throw new Error(`Unable to download video: ${err}`);
   }
 }
 
 module.exports = {
   getVideoInfo,
   downloadThumbnail,
-  downloadAudio,
+  downloadVideo,
 };

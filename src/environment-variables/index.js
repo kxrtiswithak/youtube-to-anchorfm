@@ -6,14 +6,14 @@ const defaultValues = {
   ANCHOR_EMAIL: '',
   ANCHOR_PASSWORD: '',
   UPLOAD_TIMEOUT: 60 * 5 * 1000,
-  SAVE_AS_DRAFT: false,
-  LOAD_THUMBNAIL: false,
+  SAVE_AS_DRAFT: true,
+  LOAD_THUMBNAIL: true,
   IS_EXPLICIT: false,
-  URL_IN_DESCRIPTION: false,
+  URL_IN_DESCRIPTION: true,
   POSTPROCESSOR_ARGS: '',
   SET_PUBLISH_DATE: false,
-  AUDIO_FILE_FORMAT: 'mp3',
-  AUDIO_FILE_TEMPLATE: 'episode.%(ext)s',
+  VIDEO_FILE_FORMAT: 'mp4',
+  VIDEO_FILE_TEMPLATE: 'episode.%(ext)s',
   THUMBNAIL_FILE_FORMAT: 'jpg',
   THUMBNAIL_FILE_TEMPLATE: 'thumbnail.%(ext)s',
   PUPETEER_HEADLESS: true,
@@ -64,13 +64,13 @@ module.exports = {
   URL_IN_DESCRIPTION: getBoolean(getEnvironmentVariable('URL_IN_DESCRIPTION')),
   POSTPROCESSOR_ARGS: getEnvironmentVariable('POSTPROCESSOR_ARGS'),
   SET_PUBLISH_DATE: getBoolean(getEnvironmentVariable('SET_PUBLISH_DATE')),
-  AUDIO_FILE_FORMAT: getDotEnvironmentVariable('AUDIO_FILE_FORMAT'),
-  AUDIO_FILE_TEMPLATE: getDotEnvironmentVariable('AUDIO_FILE_TEMPLATE'),
+  VIDEO_FILE_FORMAT: getDotEnvironmentVariable('VIDEO_FILE_FORMAT'),
+  VIDEO_FILE_TEMPLATE: getDotEnvironmentVariable('VIDEO_FILE_TEMPLATE'),
   THUMBNAIL_FILE_FORMAT: getDotEnvironmentVariable('THUMBNAIL_FILE_FORMAT'),
   THUMBNAIL_FILE_TEMPLATE: getDotEnvironmentVariable('THUMBNAIL_FILE_TEMPLATE'),
-  AUDIO_FILE: getTemplatedFileName(
-    getDotEnvironmentVariable('AUDIO_FILE_TEMPLATE'),
-    getDotEnvironmentVariable('AUDIO_FILE_FORMAT')
+  VIDEO_FILE: getTemplatedFileName(
+    getDotEnvironmentVariable('VIDEO_FILE_TEMPLATE'),
+    getDotEnvironmentVariable('VIDEO_FILE_FORMAT')
   ),
   THUMBNAIL_FILE: getTemplatedFileName(
     getDotEnvironmentVariable('THUMBNAIL_FILE_TEMPLATE'),
