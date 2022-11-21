@@ -12,11 +12,9 @@ jobs:
     steps:
       - name: Check out current repository
         uses: actions/checkout@v2
-        with:
-          path: ./
+        path: ./
       - name: Upload Episode from YouTube To Anchor.Fm
-        working-directory: ./
-        uses: action
+        uses: kxrtiswithak/youtube-to-anchorfm@latest
         env:
           ANCHOR_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
