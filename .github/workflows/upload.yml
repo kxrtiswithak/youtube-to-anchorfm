@@ -13,7 +13,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Upload Episode from YouTube To Anchor.Fm
-        uses: ./action
+        uses: kxrtiswithak/youtube-to-anchorfm/action@main
         env:
           ANCHOR_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
