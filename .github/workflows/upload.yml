@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Check out current repository
         uses: actions/checkout@v2
-        path: ./
       - name: Upload Episode from YouTube To Anchor.Fm
         uses: kxrtiswithak/youtube-to-anchorfm@latest
         env:
