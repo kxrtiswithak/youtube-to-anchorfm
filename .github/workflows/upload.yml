@@ -10,9 +10,10 @@ jobs:
   upload_episode:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v2
       - name: Upload Episode from YouTube To Anchor.Fm
-        uses: Schrodinger-Hat/youtube-to-anchorfm@main
+        uses: ./action
         env:
           ANCHOR_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
