@@ -10,10 +10,14 @@ jobs:
   upload_episode:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out current repository
         uses: actions/checkout@v2
+        with:
+          path: ./
       - name: Upload Episode from YouTube To Anchor.Fm
-        uses: kxrtiswithak/youtube-to-anchorfm/action@main
+        working-directory: ./
+        run: ls .
+        shell: bash
         env:
           ANCHOR_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
