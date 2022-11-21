@@ -16,8 +16,7 @@ jobs:
           path: ./
       - name: Upload Episode from YouTube To Anchor.Fm
         working-directory: ./
-        run: ls .
-        shell: bash
+        uses: action
         env:
           ANCHOR_EMAIL: ${{ secrets.ANCHOR_EMAIL }}
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
